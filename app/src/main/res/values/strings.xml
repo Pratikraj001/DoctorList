@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">TRRevPostman</string>
+
+
+    <string name="category">Category</string>
+    <string name="Doctor_Name">Doctor Name</string>
+    <string name="Doctor_Details">Doctor Details</string>
+    <string name="title">Title</string>
+    <string name="content">Content</string>
+    <string name="sub_description">Sub Description</string>
+    <string name="todo">TODO</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="full_name">Full Name</string>
+    <string name="email">Email</string>
+    <string name="gender">Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="others">Others</string>
+    <string name="months">Months</string>
+    <string name="years">Years</string>
+    <string name="practicing_form">Practicing Form</string>
+    <string name="restore">Add Data</string>
+    <string name="add_doctor">Add Doctor</string>
+    <string name="update">Update</string>
+    <string name="xyz_gmail_com">xyz@gmail.com</string>
+    <string name="m">M</string>
+    <string name="praticing_from">Praticing From</string>
+    <string name="xxxx">XXXX</string>
+    <string name="xx">XX</string>
+    <string name="divider">/</string>
+    <string name="doctor_id">Doctor ID</string>
+
+</resources>

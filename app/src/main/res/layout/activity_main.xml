@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/doctorlistRV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_above="@+id/separatorV"
+        tools:listitem="@layout/doctor_list"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"/>
+
+    <!-- View: To make BottomNavigationView look separate from other UI -->
+    <View
+        android:id="@+id/separatorV"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey"
+        android:layout_above="@id/addDoctorFAB" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/addDoctorFAB"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="2dp"
+        app:cornerRadius="8dp"
+        android:minHeight="@dimen/m_button_height"
+        android:text="@string/add_doctor"
+        android:textColor="@color/grey"
+        android:textStyle="bold"
+        app:backgroundTint="@color/yellow"
+        app:icon="@drawable/ic_plus_green"
+        app:iconGravity="textStart"
+        app:iconTint="@color/grey"
+        tools:text="@string/add_doctor" />
+
+
+
+</RelativeLayout>
