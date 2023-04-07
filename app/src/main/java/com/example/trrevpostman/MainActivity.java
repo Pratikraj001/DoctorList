@@ -101,29 +101,29 @@ public class MainActivity extends AppCompatActivity  {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                try {
-                    JSONArray jsonArray = response.getJSONObject("d").getJSONArray("results");
+                    try {
+                        JSONArray jsonArray = response.getJSONObject("d").getJSONArray("results");
 
-                    for (int i  = 0 ; i < jsonArray.length() ; i++){
+                        for (int i  = 0 ; i < jsonArray.length() ; i++){
 
-                        DataModal dataModal = new DataModal();
-                        dataModal.setId(jsonArray.getJSONObject(i).getString("doctors_id"));
-                        dataModal.setName(jsonArray.getJSONObject(i).getString("name"));
-                        dataModal.setEmail(jsonArray.getJSONObject(i).getString("email").toString());
-                        dataModal.setGender(jsonArray.getJSONObject(i).getString("gender").toString());
-                        dataModal.setMonth(jsonArray.getJSONObject(i).getString("practice_frm_month"));
-                        dataModal.setYear(jsonArray.getJSONObject(i).getString("practice_frm_year"));
-                        doctorList.add(dataModal);
+                            DataModal dataModal = new DataModal();
+                            dataModal.setId(jsonArray.getJSONObject(i).getString("doctors_id"));
+                            dataModal.setName(jsonArray.getJSONObject(i).getString("name"));
+                            dataModal.setEmail(jsonArray.getJSONObject(i).getString("email").toString());
+                            dataModal.setGender(jsonArray.getJSONObject(i).getString("gender").toString());
+                            dataModal.setMonth(jsonArray.getJSONObject(i).getString("practice_frm_month"));
+                            dataModal.setYear(jsonArray.getJSONObject(i).getString("practice_frm_year"));
+                            doctorList.add(dataModal);
 
+                        }
+
+
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        progressDialog.dismiss();
                     }
-
-
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    progressDialog.dismiss();
-                }
 
                 adapter.notifyDataSetChanged();
                 progressDialog.dismiss();
