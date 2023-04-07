@@ -21,6 +21,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.trrevpostman.databinding.ActivityMainBinding;
 import com.google.android.material.button.MaterialButton;
@@ -97,40 +98,33 @@ public class MainActivity extends AppCompatActivity  {
         progressDialog.show();
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url,null, new Response.Listener<JSONArray>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(JSONArray response) {
-//                Log.d("response", "onResponse: "+response.toString());
-//                try {
-//                    JSONObject  jsonRootObject = new JSONObject(response.toString());
-//                    JSONArray jsonArray = jsonRootObject.optJSONArray("results");
-                for (int i = 0; i < response.length(); i++) {
-                    try {
-                        JSONObject jsonObject = response.getJSONObject(i);
-                        JSONArray array = jsonObject.getJSONArray("d");
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONArray jsonArray = response.getJSONObject("d").getJSONArray("results");
+
+                    for (int i  = 0 ; i < jsonArray.length() ; i++){
+
+                        DataModal dataModal = new DataModal();
+                        dataModal.setId(jsonArray.getJSONObject(i).getString("doctors_id"));
+                        dataModal.setName(jsonArray.getJSONObject(i).getString("name"));
+                        dataModal.setEmail(jsonArray.getJSONObject(i).getString("email").toString());
+                        dataModal.setGender(jsonArray.getJSONObject(i).getString("gender").toString());
+                        dataModal.setMonth(jsonArray.getJSONObject(i).getString("practice_frm_month"));
+                        dataModal.setYear(jsonArray.getJSONObject(i).getString("practice_frm_year"));
+                        doctorList.add(dataModal);
+
+                    }
 
 
-                        for (int j = 0; j < array.length(); j++) {
-//                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                            JSONObject objects = array.getJSONObject(i);
 
 
-                            DataModal dataModal = new DataModal();
-                            dataModal.setId(objects.getString("doctors_id").toString());
-                            dataModal.setName(objects.getString("name").toString());
-                            dataModal.setEmail(objects.getString("email").toString());
-                            dataModal.setGender(objects.getString("gender").toString());
-                            dataModal.setMonth(objects.getString("practice_frm_month").toString());
-                            dataModal.setYear((objects.getString("practice_frm_year")).toString());
-
-                            doctorList.add(dataModal);
-                        }
-
-                } catch(JSONException e){
+                } catch (JSONException e) {
                     e.printStackTrace();
                     progressDialog.dismiss();
                 }
-            }
+
                 adapter.notifyDataSetChanged();
                 progressDialog.dismiss();
             }
@@ -140,21 +134,22 @@ public class MainActivity extends AppCompatActivity  {
                 Log.e("Volley", error.toString());
                 progressDialog.dismiss();
             }
-        }){
+        }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<String, String>();
                 headers.put("Content-Type", "application/json");
-                headers.put("Accept","application/json");
+                headers.put("Accept", "application/json");
                 return headers;
             }
+
             @Override
             public String getBodyContentType() {
                 return "application/json";
             }
         };
 
-        requestQueue.add(jsonArrayRequest);
+        requestQueue.add(jsonObjectRequest);
     }
 
 
