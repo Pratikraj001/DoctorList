@@ -135,6 +135,7 @@ public class AddDataActivity extends AppCompatActivity implements View.OnClickLi
                         AddDataActivity.this.emailEt.setText("");
                         AddDataActivity.this.monthEt.setText("");
                         AddDataActivity.this.yearEt.setText("");
+                        Log.d("after resp", "onResponse: "+gender);
                     }
                 },
                 new Response.ErrorListener() {

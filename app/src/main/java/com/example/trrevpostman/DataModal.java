@@ -1,5 +1,7 @@
 package com.example.trrevpostman;
 
+import android.util.Log;
+
 public class DataModal {
     private String id, name, email,gender, month, year;
 
@@ -45,7 +47,7 @@ public class DataModal {
         return gender;
     }
 
-    public void setGender(String m) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
