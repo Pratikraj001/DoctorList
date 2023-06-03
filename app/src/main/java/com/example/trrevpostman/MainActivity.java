@@ -115,7 +115,9 @@ public class MainActivity extends AppCompatActivity  {
                         dataModal.setMonth(jsonArray.getJSONObject(i).getString("practice_frm_month"));
                         dataModal.setYear(jsonArray.getJSONObject(i).getString("practice_frm_year"));
 
-//                        Log.d("genderD", "onResponse: "+dataModal.getGender());
+                        Log.d("genderD", "onResponse: "+dataModal.getGender());
+                        Log.d("genderD", "onResponse: "+dataModal.getName());
+                        Log.d("genderD", "onResponse: "+dataModal.getEmail());
 
                         doctorList.add(dataModal);
 
